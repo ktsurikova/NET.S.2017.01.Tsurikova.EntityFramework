@@ -12,7 +12,7 @@ namespace Service
     /// <summary>
     /// class for working with entities
     /// </summary>
-    public class PurchaseSerice
+    public class PurchaseService
     {
         private readonly DbContext context;
 
@@ -20,7 +20,7 @@ namespace Service
         /// creates new instance with specified context
         /// </summary>
         /// <param name="context">dbcontextparam>
-        public PurchaseSerice(DbContext context)
+        public PurchaseService(DbContext context)
         {
             this.context = context ?? throw new ArgumentNullException($"{nameof(context) is null}");
         }

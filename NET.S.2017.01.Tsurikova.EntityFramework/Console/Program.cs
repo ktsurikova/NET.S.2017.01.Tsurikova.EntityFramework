@@ -14,7 +14,7 @@ namespace ConsoleTests
         {
             using (var context = new EntityModel.EntityModel())
             {
-                PurchaseSerice service = new PurchaseSerice(context);
+                PurchaseService service = new PurchaseService(context);
 
                 //Category clothes = new Category() { Name = "Clothes" };
                 //Category shoes = new Category() { Name = "Shoes" };
