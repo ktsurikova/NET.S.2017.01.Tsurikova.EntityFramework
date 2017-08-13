@@ -10,8 +10,6 @@ namespace EntityModel
     {
         public int OrderId { get; set; }
         public int Count { get; set; }
-        public int GoodsId { get; set; }
-        public int PurchaseId { get; set; }
 
         public virtual Purchase Purchase { get; set; }
         public virtual Goods Goods { get; set; }

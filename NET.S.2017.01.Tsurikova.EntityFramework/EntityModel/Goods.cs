@@ -14,7 +14,7 @@ namespace EntityModel
         public decimal Price { get; set; }
         public byte[] Photo { get; set; }
 
-        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+        public virtual List<Order> Orders { get; set; }
     }
 }
