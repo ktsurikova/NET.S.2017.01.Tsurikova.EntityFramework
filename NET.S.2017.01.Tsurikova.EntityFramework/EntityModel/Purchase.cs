@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EntityModel
 {
+    /// <summary>
+    /// class for working with purchase info
+    /// </summary>
     public class Purchase
     {
         public int PurchaseId { get; set; }

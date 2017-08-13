@@ -9,10 +9,17 @@ using System.Linq.Expressions;
 
 namespace Service
 {
+    /// <summary>
+    /// class for working with entities
+    /// </summary>
     public class PurchaseSerice
     {
         private readonly DbContext context;
 
+        /// <summary>
+        /// creates new instance with specified context
+        /// </summary>
+        /// <param name="context">dbcontextparam>
         public PurchaseSerice(DbContext context)
         {
             this.context = context ?? throw new ArgumentNullException($"{nameof(context) is null}");
@@ -20,6 +27,10 @@ namespace Service
 
         #region category
 
+        /// <summary>
+        /// add new category of goods
+        /// </summary>
+        /// <param name="category">category to be added</param>
         public void AddCategory(Category category)
         {
             if (category == null)
@@ -30,12 +41,20 @@ namespace Service
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// retun all available categories of goods
+        /// </summary>
+        /// <returns>all available categories of goods</returns>
         public IEnumerable<Category> GetAllCategories() => context.Set<Category>();
 
         #endregion
 
         #region goods
 
+        /// <summary>
+        /// adds goods
+        /// </summary>
+        /// <param name="goods">goods to be added</param>
         public void AddGoods(Goods goods)
         {
             if (goods == null)
@@ -44,6 +63,10 @@ namespace Service
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// adds range of goods
+        /// </summary>
+        /// <param name="goods">goods to be added</param>
         public void AddRangeOfGoods(IEnumerable<Goods> goods)
         {
             if (goods == null)
@@ -53,8 +76,17 @@ namespace Service
 
         }
 
+        /// <summary>
+        /// returns all goods
+        /// </summary>
+        /// <returns>all goods</returns>
         public IEnumerable<Goods> GetAllGoods() => context.Set<Goods>();
 
+        /// <summary>
+        /// find first goods that satisfies specified conditions
+        /// </summary>
+        /// <param name="expr">condition</param>
+        /// <returns>first goods if exisits otherwise null</returns>
         public Goods GetFirstOrDefaultGoodsByPredicate(Expression<Func<Goods, bool>> expr)
         {
             if (expr == null)
@@ -62,6 +94,11 @@ namespace Service
             return context.Set<Goods>().FirstOrDefault(expr);
         }
 
+        /// <summary>
+        /// find all goods that satisfy specifies conditions
+        /// </summary>
+        /// <param name="expr">condition</param>
+        /// <returns>all goods that satisfy specifies conditions</returns>
         public IEnumerable<Goods> GetAllGoodsByPredicate(Expression<Func<Goods, bool>> expr)
         {
             if (expr == null)
@@ -69,6 +106,11 @@ namespace Service
             return context.Set<Goods>().Where(expr);
         }
 
+        /// <summary>
+        /// change price of specifies goodsS
+        /// </summary>
+        /// <param name="goods">goods to be changed</param>
+        /// <param name="price">new price</param>
         public void ChangePrice(Goods goods, decimal price)
         {
             if (goods == null)
@@ -81,6 +123,10 @@ namespace Service
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// delete goods
+        /// </summary>
+        /// <param name="goods">goods to be removed</param>
         public void DeleteGoods(Goods goods)
         {
             if (goods == null)
@@ -96,6 +142,11 @@ namespace Service
 
         #region purchase
 
+        /// <summary>
+        /// add purchase
+        /// </summary>
+        /// <param name="purchase">puchase to be added</param>
+        /// <param name="orders">orders to be added</param>
         public void AddPurchase(Purchase purchase, params Order[] orders)
         {
             if (purchase == null)
@@ -113,6 +164,11 @@ namespace Service
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// adds orders to purchase
+        /// </summary>
+        /// <param name="purchase">purchase in which orders to be added</param>
+        /// <param name="orders">orders to be added</param>
         public void AddOrdersToPurchase(Purchase purchase, params Order[] orders)
         {
             if (purchase == null)
@@ -130,6 +186,10 @@ namespace Service
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// removes purchase with its orders
+        /// </summary>
+        /// <param name="purchase">purchase to be removed</param>
         public void DeletePurchase(Purchase purchase)
         {
             if (purchase == null)
@@ -142,6 +202,10 @@ namespace Service
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// return all purchase
+        /// </summary>
+        /// <returns>all purchase</returns>
         public IEnumerable<Purchase> GetAllPurchase() => context.Set<Purchase>();
 
         #endregion
